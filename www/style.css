@@ -1,0 +1,323 @@
+/******************************************************************************/
+/*                 Styling for WGS Econ Benefit calculator                    */
+/******************************************************************************/
+
+/* --------------------------------  Focus  --------------------------------- */
+input:focus, button:focus, a:focus, select:focus {
+  outline: 4px solid #70c6ff !important;
+}
+
+/* ---------------------------- shinyvalidate ------------------------------- */
+span.shiny-validation-message, div.has-error > label {
+  color: #ab0707 !important;
+}
+
+/* ---------------------------  General Buttons  ---------------------------- */
+button {
+  font-size: 1em !important;
+  padding: 10px !important;
+  position: relative;
+  color: #033054 !important;
+  background-color: #dddddd !important;
+  border: 2px solid #033054 !important;
+  border-radius: 8px !important;
+  box-shadow: 3px 3px 4px #555555 !important;
+  -webkit-box-shadow:  3px 3px 4px #555555 !important;
+}
+
+button i {
+  color: #033054 !important;
+}
+
+/* ----------------------------  General Tags  ------------------------------ */
+
+html, body, text, h1, h2, h3, footer, button, span {
+  color: #033054 !important;
+  font-family: 'helvetica neue', helvetica, arial, sans-serif !important;
+  font-size: 1em;
+}
+
+body {
+  margin-right: 10px !important;
+}
+
+/* First <div> under <body> */
+#div_first {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+main {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* ---------------------------  Navigation bar  ----------------------------- */
+
+nav {
+  margin-left: 5px;
+}
+
+@media only screen and (min-width: 768px) {
+  nav {
+    margin-left: 0;
+  }
+}
+
+nav.navbar {
+  font-size: 1.05em;
+  background-color: #033054 !important;
+  border: none !important;
+}
+
+nav.navbar > div > div.navbar-header > span.navbar-brand {
+  color: white !important;
+  font-size: 1.25em;
+}
+
+nav.navbar > div > ul.nav > li.active {
+  background-color: white !important;
+}
+
+nav.navbar > div > ul.nav > li > a {
+  color: white !important;
+}
+
+nav.navbar > div > ul.nav > li.active > a {
+  color: #033054 !important;
+  font-size: 1.25em;
+  background-color: white !important;
+}
+
+nav.navbar > div > ul.nav > li > a > i {
+  color: white;
+}
+
+nav.navbar > div > ul.nav > li.active > a > i {
+  color: #033054 !important;
+}
+
+/* -----------------------------  Home tab  --------------------------------- */
+
+h1.app-title {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+div.intro-row {
+  max-width: 1050px;
+}
+
+h2.app-subtitle {
+  font-size: 1.75em;
+  margin-top: 5px;
+}
+
+h3.app-reference, h3.calculation-parameters {
+  font-size: 1.25em;
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+a.weblink {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: #005f9f;
+}
+a.weblink:hover {
+  text-decoration: none;
+}
+a.weblink:focus {
+  text-decoration: none;
+}
+
+#mail_to {
+  font-family: 'helvetica neue', helvetica, arial, sans-serif !important;
+  font-size: 1em;
+  font-style: italic;
+  margin: auto;
+  white-space: normal;
+  text-align: left;
+  padding-top: 10px;
+}
+
+.email-link {
+  color: #005f9f;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.email-link:hover {
+  text-decoration: none;
+}
+.email-link:focus {
+  text-decoration: none;
+}
+
+footer {
+  font-style: italic;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 15px;
+  display: inline-block;
+}
+
+/* ----------------------------  General tab  ------------------------------- */
+
+h1.wizard-page {
+  font-size: 2em;
+  padding-top: 5px;
+  margin-top: 5px;
+  margin-bottom: 25px;
+}
+
+div.input-well {
+  border-color: #033054;
+  border-width: medium;
+  border-radius: 10px;
+  margin-bottom: 0;
+  min-width: 300px;
+}
+@media only screen and (min-width: 768px) {
+  div.input-well {
+    min-width: 700px;
+  }
+}
+@media only screen and (min-width: 1050px) {
+  div.input-well {
+    min-width: 1000px;
+  }
+}
+
+div.datepicker td.new, td.old {
+  color: #555555 !important;
+}
+div.datepicker td.active {
+  background-color: #005f9f !important;
+}
+
+h2.data-input-h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+hr.input-separator {
+  border: 1px solid #dddddd;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+span.help-text {
+  color: #555555 !important;
+  margin-bottom: 0 !important;
+}
+
+div.radio span {
+  color: black;
+}
+
+.numeric-input, .text-input, .select-input {
+  margin-top: 8px !important;
+  margin-bottom: 5px !important;
+}
+
+button.next-button, button.previous-button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+button.previous-button {
+  margin-right: 15px;
+}
+
+/* --------------------------  Equipment tab  ------------------------------- */
+
+.explain-button {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+span.explain-text {
+  color: #555555 !important;
+  display: inline-block;
+  margin-top: 10px !important;
+  margin-bottom: 0 !important;
+}
+
+span.explain-text p {
+  color: #555555 !important;
+  display: inline-block;
+  margin-top: 5px !important;
+  margin-bottom: 0 !important;
+}
+
+/* ---------------------------  Results tab  -------------------------------- */
+
+.results-div {
+  background-color: white !important;
+  border: white !important;
+  max-width: 750px;
+}
+
+#chosen_pathogen > span {
+  font-size: 1.5em;
+}
+
+div.output-box {
+  text-align: center;
+  width: auto;
+  max-width: 300px;
+  height: auto;
+  padding: 10px;
+  margin: 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  border-style: solid;
+  border-width: thick;
+  border-color: #033054;
+  border-radius: 10px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.25);
+}
+@media only screen and (min-width: 768px) {
+  div.output-box {
+    min-width: 300px;
+  }
+}
+div.output-box > h2 {
+  font-size: 1.5em;
+}
+
+#b2c_ratio, #annual_wgs_cost {
+  font-size: 2em;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+#per_sample_cost_table {
+  min-width: 275px !important;
+  max-width: 350px !important;
+}
+caption {
+  color: #033054;
+  font-size: 1.25em;
+}
+
+.download-report {
+  position: relative;
+  margin-bottom: 10px;
+  font-size: 1.125em;
+  color: #033054 !important;
+  background-color: #dddddd !important;
+  border: 2px solid #033054 !important;
+  border-radius: 8px !important;
+  box-shadow: 3px 3px 4px #555555 !important;
+  -webkit-box-shadow:  3px 3px 4px #555555 !important;
+}

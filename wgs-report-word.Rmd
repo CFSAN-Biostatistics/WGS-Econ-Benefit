@@ -1,0 +1,216 @@
+---
+title: "Whole Genome Sequencing Cost-Benefit Report"
+author: WGS Econ Benefit web app
+subject: Whole Genome Sequencing
+output:
+  word_document:
+    number_sections: true
+    reference_docx: "common/word-styling.docx"
+params:
+  lab_name: ""
+  report_date: ""
+  sequencer: ""
+  pathogen: ""
+  num_isolates: 0
+  equip_capital_f: ""
+  equip_maint_f: ""
+  equip_use_rate_f: ""
+  consumables_cost_f: ""
+  failure_rate_f: ""
+  tech_time_f: ""
+  prof_time_f: ""
+  overhead_pct_f: ""
+  other_costs_f: ""
+  glob_technician_pay_f: ""
+  glob_professional_pay_f: ""
+  equip_per_sample_f: ""
+  consumables_per_sample_f: ""
+  staff_costs_f: ""
+  total_staff_time_f: ""
+  other_per_sample_f: ""
+  total_cost_per_sample_f: ""
+  annual_cost_f: ""
+  cases_prevented_f: ""
+  illness_cost_avoided_f: ""
+  savings_per_dollar_f: ""
+---
+
+<!-- https://bookdown.org/yihui/rmarkdown/word-document.html -->
+<!-- https://rmarkdown.rstudio.com/articles_docx.html -->
+
+```{r setup, include=FALSE}
+library(knitr)
+library(magrittr)
+library(flextable)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+# Identifying Information
+
+Laboratory: `r params$lab_name`
+
+Report Date: `r params$report_date`
+
+Sequencer (Make/Model): `r params$sequencer`
+
+# Sample Data
+
+Pathogen of Interest: `r params$pathogen`
+
+Unique Isolates Sequenced (last 12 months): `r params$num_isolates`
+
+# Inputs & Assumptions
+
+## Cost Inputs
+
+```{r}
+inputs_tbl <- data.frame(
+  category = c(
+    "Equipment capital (annualized)",
+    "Equipment maintenance (annual)",
+    "Equipment use rate (%)",
+    "Consumables (annual)",
+    "Analytical failure rate (%)",
+    "Technician time (minutes/sample)",
+    "Professional time (minutes/sample)",
+    "Overhead (% of pre-tax wages)",
+    "Other costs (annualized)"
+  ),
+  value = c(
+    params$equip_capital_f,
+    params$equip_maint_f,
+    params$equip_use_rate_f,
+    params$consumables_cost_f,
+    params$failure_rate_f,
+    params$tech_time_f,
+    params$prof_time_f,
+    params$overhead_pct_f,
+    params$other_costs_f
+  )
+)
+colnames(inputs_tbl) <- c("Category", "Value")
+flextable(inputs_tbl) %>%
+  autofit() %>%
+  set_caption(
+    as_paragraph(
+      as_chunk(
+        "User-reported Values",
+        props = fp_text_default(font.family = "Arial")
+      )
+    )
+  ) %>%
+  set_table_properties(
+    opts_word = list(split = FALSE, keep_with_next = TRUE),
+    word_title = "Values entered by the user",  #alt text
+    word_description = paste(  #alt text
+      "Table showing the values reported by the user.",
+      "The first column shows the category.",
+      "The second column shows the value."
+    )
+  ) %>%
+  font(fontname = "Arial", part = "all") %>%
+  align(j = 2, align = "right", part = "all")
+```
+
+## Pay Rates
+
+```{r}
+pay_tbl <- data.frame(
+  role = c("Technician","Professional"),
+  rate = c(params$glob_technician_pay_f, params$glob_professional_pay_f)
+)
+colnames(pay_tbl) <- c("Role", "Fully loaded pay rate")
+flextable(pay_tbl) %>%
+  autofit() %>%
+  set_caption(
+    as_paragraph(
+      as_chunk(
+        "Hourly Pay Rates",
+        props = fp_text_default(font.family = "Arial")
+      )
+    )
+  ) %>%
+  set_table_properties(
+    opts_word = list(split = FALSE, keep_with_next = TRUE),
+    word_title = "Pay rates for technicians and professionals",  #alt text
+    word_description = paste(  #alt text
+      "Table showing the pay rates for technicians and professionals.",
+      "The first column shows the employee role.",
+      "The second column shows the hourly pay rate."
+    )
+  ) %>%
+  font(fontname = "Arial", part = "all") %>%
+  align(j = 2, align = "right", part = "all")
+```
+
+# Results
+
+## Per-Sample Costs
+
+```{r}
+per_sample_tbl <- data.frame(
+  source = c(
+    "Equipment",
+    "Consumables",
+    "Staff (including overhead)",
+    "Other"
+  ),
+  cost = c(
+    params$equip_per_sample_f,
+    params$consumables_per_sample_f,
+    params$staff_costs_f,
+    params$other_per_sample_f
+  )
+)
+colnames(per_sample_tbl) <- c("Source", "Cost")
+flextable(per_sample_tbl) %>%
+  autofit() %>%
+  add_footer_row(
+    top = FALSE,
+    values = list(
+      Source = "TOTAL",
+      Cost = params$total_cost_per_sample_f
+    ),
+    colwidths = c(1, 1)
+  ) %>%
+  set_caption(
+    as_paragraph(
+      as_chunk(
+        "Calculated Cost Per Sample",
+        props = fp_text_default(font.family = "Arial")
+      )
+    )
+  ) %>%
+  set_table_properties(
+    opts_word = list(split = FALSE, keep_with_next = TRUE),
+    word_title = "Calculated cost per sample",  #alt text
+    word_description = paste(  #alt text
+      "Table showing the cost per sample.",
+      "The first column shows the source of the cost.",
+      "The second column shows the amount."
+    )
+  ) %>%
+  font(fontname = "Arial", part = "all") %>%
+  align(j = 2, align = "right", part = "all")
+```
+
+## Staff Time
+
+Hands-on staff time per sample: `r params$total_staff_time_f` hours
+
+## Annual Totals
+
+Annual cost for `r params$pathogen` samples: **`r params$annual_cost_f`**
+
+# Cost-Benefit Summary
+
+Estimated cases prevented (last 12 months): **`r params$cases_prevented_f`**
+
+Estimated illness costs avoided:  **`r params$illness_cost_avoided_f`**
+
+Savings per $1 spent: **`r params$savings_per_dollar_f`**
+
+
+> **Note:** Values use the pathogen's average *cases prevented per 1,000 isolates*
+and *cost per case*, applied to your isolate count and the cost structure
+captured above.
